@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REMIDIAL ULANGAN KIMIA SMA KELAS 10</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col" oncontextmenu="return false;">
+
+  <!-- HEADER APLIKASI -->
+  <header class="bg-slate-950/80 border-b border-cyan-900/40 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo & Judul (Area Klik Rahasia Panel Guru: 5x Klik) -->
+      <div class="flex items-center gap-3 cursor-pointer select-none" onclick="handleSecretClick()" title="Remedial Kimia Kelas 10">
+        <div class="p-2 bg-cyan-950 border border-cyan-500/30 rounded-xl text-cyan-400">
+          <i data-lucide="flask-conical" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-sm md:text-base text-cyan-300 leading-tight tracking-wide">REMIDIAL KIMIA SMA KELAS 10</h1>
+          <p class="text-[11px] text-slate-400 hidden md:block">Teori Atom, Partikel Subatomik, & Struktur Atom</p>
+        </div>
+      </div>
+
+      <!-- Live Info Ujian (Timer & Anti-Cheat Badge) -->
+      <div id="header-exam-info" class="hidden flex items-center gap-3">
+        <div class="flex items-center gap-2 bg-slate-900 border border-cyan-500/40 px-3 py-1.5 rounded-lg">
+          <i data-lucide="clock" class="w-4 h-4 text-cyan-400 animate-pulse"></i>
+          <span id="timer-display" class="font-mono font-bold text-sm md:text-base text-cyan-300">45:00</span>
+        </div>
+        <div id="badge-fullscreen" class="hidden md:flex items-center gap-1.5 bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-xs px-2.5 py-1 rounded-md">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span>Pengawasan Aktif</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow max-w-5xl w-full mx-auto p-4 md:p-6 flex flex-col justify-center">
+
+    <!-- PAGE 1: IDENTITAS & KODE AKSES -->
+    <div id="page-welcome" class="space-y-6">
+      <div class="bg-gradient-to-br from-slate-900 via-cyan-950 to-indigo-950 border border-cyan-500/30 rounded-2xl p-6 md:p-8 text-white shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="inline-block bg-cyan-900/50 border border-cyan-400/30 text-cyan-300 text-xs px-3 py-1 rounded-full font-semibold mb-3">
+          Evaluasi Pembelajaran Kimia
+        </div>
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-100 mb-2">Remedial Ulangan Struktur Atom</h2>
+        <p class="text-slate-300 text-sm md:text-base max-w-2xl leading-relaxed">
+          Mencakup Perkembangan Teori Atom, Partikel Subatomik, Notasi Atom, Ion, Isotop/Isobar/Isoton, Kelimpahan Isotop, Konfigurasi Elektron, dan Elektron Valensi.
+        </p>
+        
+        <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 pt-4 border-t border-slate-800 text-xs text-slate-300">
+          <div>
+            <span class="text-slate-400 block">Jumlah Soal</span>
+            <span class="font-bold text-cyan-300 text-sm">15 Soal (10 PG, 5 Essay)</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block">Alokasi Waktu</span>
+            <span id="welcome-duration" class="font-bold text-cyan-300 text-sm">45 Menit</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block">Skor Maksimal</span>
+            <span class="font-bold text-cyan-300 text-sm">100 Poin</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block">Pengawasan</span>
+            <span class="font-bold text-cyan-300 text-sm">Sistem Anti-Curang</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Data Diri -->
+      <div class="bg-slate-950/60 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+        <h3 class="text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
+          <i data-lucide="user-check" class="w-5 h-5 text-cyan-400"></i>
+          Identitas Peserta Didik
+        </h3>
+
+        <form id="form-identitas" onsubmit="handleStartExam(event)" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-1">NAMA LENGKAP *</label>
+              <input type="text" id="input-nama" required placeholder="Contoh: Budi Santoso" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-1">KELAS *</label>
+              <input type="text" id="input-kelas" required placeholder="Contoh: X IPA 2" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-400 mb-1">NOMOR PESERTA / NISN *</label>
+              <input type="text" id="input-nomor" required placeholder="Contoh: 102938" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm outline-none">
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <label class="block text-xs font-semibold text-slate-400 mb-1">KODE AKSES REMEDIAL *</label>
+            <div class="relative max-w-xs">
+              <input type="password" id="input-kode" required placeholder="Masukkan Kode Akses" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm outline-none font-mono">
+              <button type="button" onclick="togglePasswordVisibility('input-kode')" class="absolute right-3 top-2.5 text-slate-500 hover:text-slate-300">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <p id="error-kode" class="text-xs text-rose-400 font-medium mt-1.5 hidden">Kode akses tidak valid. Silakan masukkan kode yang diberikan guru.</p>
+          </div>
+
+          <!-- Peringatan Anti Curang -->
+          <div class="bg-amber-950/40 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-200/90 space-y-1">
+            <p class="font-bold flex items-center gap-1.5 text-amber-400">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i> Aturan Anti-Kecurangan:
+            </p>
+            <ul class="list-disc list-inside space-y-0.5 text-slate-300 pl-1">
+              <li>Dilarang berpindah tab, berpindah window, atau meminimalkan browser.</li>
+              <li>Hanya diberikan <strong>1 kali toleransi peringatan</strong>.</li>
+              <li>Pelanggaran ke-2 akan mengakibatkan <strong>UJIAN OTOMATIS DIHENTIKAN & DIKUNCI</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" class="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-cyan-950 transition flex items-center justify-center gap-2">
+              <span>MULAI REMEDIAL SEKARANG</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- PAGE 2: LEMBAR SOAL UJIAN -->
+    <div id="page-exam" class="hidden space-y-6">
+      
+      <!-- Top Progress Bar & Peta Soal Navigasi -->
+      <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl shadow-xl flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="w-full md:w-1/3 space-y-1">
+          <div class="flex justify-between text-xs font-semibold text-slate-400">
+            <span>Progress Pengerjaan</span>
+            <span id="progress-text" class="text-cyan-400">Soal 1 dari 15</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+            <div id="progress-bar" class="bg-cyan-500 h-2 rounded-full transition-all duration-300" style="width: 6.66%"></div>
+          </div>
+        </div>
+
+        <!-- Indikator Nomor Soal -->
+        <div class="flex flex-wrap gap-1.5 justify-center" id="peta-soal-container">
+          <!-- Di-generate melalui JS -->
+        </div>
+      </div>
+
+      <!-- CARD SOAL UTAMA -->
+      <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl relative">
+        <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-800/80">
+          <span id="soal-badge-tipe" class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/30 text-cyan-300">
+            Pilihan Ganda
+          </span>
+          <span id="soal-badge-kesulitan" class="text-xs font-semibold text-slate-400">
+            Tingkat: Sedang
+          </span>
+        </div>
+
+        <!-- Content Soal -->
+        <div class="space-y-4">
+          <div id="soal-stimulus" class="hidden text-slate-300 text-sm md:text-base leading-relaxed bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+            <!-- Stimulus (Jika ada) -->
+          </div>
+
+          <p id="soal-teks" class="font-semibold text-slate-100 text-base md:text-lg leading-relaxed">
+            <!-- Teks Pertanyaan -->
+          </p>
+
+          <!-- Area Opsi Jawaban PG -->
+          <div id="area-pg" class="space-y-2.5 pt-2">
+            <!-- Opsi PG A, B, C, D di-generate via JS -->
+          </div>
+
+          <!-- Area Jawaban Essay / Isian Singkat -->
+          <div id="area-essay" class="hidden pt-2 space-y-2">
+            <label class="block text-xs font-semibold text-slate-400">KETIK JAWABAN SINGKAT ANDA DI SINI:</label>
+            <textarea id="input-essay" rows="3" oninput="saveAnswerEssay()" placeholder="Ketik jawaban (misal: 1s2 2s2 2p6, atau angka/simbol)..." class="w-full p-3.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-sm outline-none font-mono"></textarea>
+            <p class="text-[11px] text-slate-500">Petunjuk: Ketik jawaban dengan singkat, padat, dan jelas sesuai petunjuk soal.</p>
+          </div>
+        </div>
+
+        <!-- Tombol Navigasi Bawah -->
+        <div class="flex justify-between items-center pt-8 mt-6 border-t border-slate-800/80">
+          <button id="btn-prev" onclick="navSoal(-1)" class="px-5 py-2.5 rounded-xl border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-sm transition flex items-center gap-1.5">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            <span>Sebelumnya</span>
+          </button>
+
+          <button id="btn-next" onclick="navSoal(1)" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-sm transition flex items-center gap-1.5 shadow-lg shadow-cyan-950">
+            <span>Berikutnya</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+
+          <button id="btn-finish" onclick="confirmSubmitExam()" class="hidden px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition flex items-center gap-1.5 shadow-lg shadow-emerald-950">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Kirim Jawaban</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3: HASIL REMEDIAL SELESAI -->
+    <div id="page-result" class="hidden space-y-6 max-w-2xl mx-auto">
+      <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl text-center space-y-6">
+        <div id="status-icon-container" class="w-16 h-16 bg-emerald-950 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto">
+          <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-extrabold text-slate-100" id="result-title">REMIDIAL SELESAI</h2>
+          <p class="text-slate-400 text-sm mt-1" id="result-subtitle">Terima kasih. Jawaban Anda telah tersimpan dan terkirim ke sistem.</p>
+        </div>
+
+        <!-- Ringkasan Nilai -->
+        <div class="bg-slate-900/90 rounded-2xl p-6 border border-slate-800 grid grid-cols-2 gap-4 text-center">
+          <div class="col-span-2 bg-cyan-950/50 border border-cyan-500/30 rounded-xl p-4">
+            <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase block">NILAI TOTAL AKHIR</span>
+            <span class="text-4xl md:text-5xl font-black text-cyan-300 my-1 block" id="res-score">0</span>
+            <span class="text-[11px] text-slate-400 block">*Mencakup Skor PG Otomatis + Pencocokan Isian</span>
+          </div>
+
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-xs text-slate-400 block">Skor Pilihan Ganda</span>
+            <span class="text-lg font-bold text-slate-200" id="res-pg-score">0 / 50</span>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-xs text-slate-400 block">Skor Essay / Isian</span>
+            <span class="text-lg font-bold text-slate-200" id="res-essay-score">0 / 50</span>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-xs text-slate-400 block">Benar PG</span>
+            <span class="text-lg font-bold text-emerald-400" id="res-correct">0</span>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-xs text-slate-400 block">Durasi Pengerjaan</span>
+            <span class="text-lg font-bold text-slate-200" id="res-duration">00:00</span>
+          </div>
+        </div>
+
+        <!-- Detail Identitas & Pelanggaran -->
+        <div class="text-left text-xs text-slate-400 space-y-1.5 pt-2 border-t border-slate-800">
+          <p><strong>Nama:</strong> <span id="res-nama" class="text-slate-200">-</span></p>
+          <p><strong>Kelas:</strong> <span id="res-kelas" class="text-slate-200">-</span></p>
+          <p><strong>Nomor Peserta:</strong> <span id="res-nomor" class="text-slate-200">-</span></p>
+          <p><strong>Status Ujian:</strong> <span id="res-status" class="font-bold text-emerald-400">SELESAI</span></p>
+          <p><strong>Status Pelanggaran Anti-Curang:</strong> <span id="res-pelanggaran" class="text-slate-300">Tidak Ada Pelanggaran</span></p>
+          <p id="spreadsheet-status" class="text-cyan-400/80 italic mt-2">Mengirim data ke Google Sheets...</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL WARNING ANTI CHEAT (PELANGGARAN PERTAMA) -->
+  <div id="modal-warning" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border-2 border-amber-500 rounded-2xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-12 h-12 bg-amber-950 border border-amber-500/50 text-amber-400 rounded-full flex items-center justify-center mx-auto">
+        <i data-lucide="alert-triangle" class="w-7 h-7"></i>
+      </div>
+      <h3 class="text-lg font-extrabold text-slate-100">PERINGATAN PELANGGARAN!</h3>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Anda terdeteksi meninggalkan halaman ujian atau melakukan aktivitas yang tidak diizinkan. Ini adalah <strong>peringatan pertama dan terakhir</strong>. Jika pelanggaran terdeteksi sekali lagi, remedial akan otomatis dihentikan dan dikunci!
+      </p>
+      <button onclick="closeWarningModal()" class="w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm rounded-xl transition">
+        Saya Mengerti & Lanjutkan Remedial
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL PANEL GURU TERSEMBUNYI -->
+  <div id="modal-guru" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h3 class="font-bold text-slate-100 flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-cyan-400"></i> Panel Pengaturan Guru
+        </h3>
+        <button onclick="closeGuruModal()" class="text-slate-500 hover:text-slate-300">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Auth PIN Guru -->
+      <div id="guru-auth" class="space-y-3">
+        <p class="text-xs text-slate-400">Masukkan PIN Guru untuk mengakses panel pengaturan.</p>
+        <input type="password" id="guru-pin-input" placeholder="PIN Guru (Default: GURU2026)" class="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 text-slate-100 rounded-xl text-sm outline-none focus:ring-2 focus:ring-cyan-500">
+        <button onclick="authGuru()" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition">Masuk Panel</button>
+        <p id="guru-auth-err" class="text-xs text-rose-400 hidden">PIN Guru salah!</p>
+      </div>
+
+      <!-- Content Panel Pengaturan Guru -->
+      <div id="guru-content" class="hidden space-y-4 text-xs">
+        <div>
+          <label class="font-semibold block mb-1 text-slate-300">Kode Akses Peserta</label>
+          <input type="text" id="guru-kode-akses" class="w-full p-2.5 bg-slate-950 border border-slate-700 text-slate-100 rounded-xl font-mono">
+        </div>
+
+        <div>
+          <label class="font-semibold block mb-1 text-slate-300">PIN Guru Baru</label>
+          <input type="password" id="guru-pin-baru" placeholder="Biarkan kosong jika tidak diubah" class="w-full p-2.5 bg-slate-950 border border-slate-700 text-slate-100 rounded-xl">
+        </div>
+
+        <div>
+          <label class="font-semibold block mb-1 text-slate-300">Durasi Ujian (Menit)</label>
+          <input type="number" id="guru-durasi" min="5" max="180" class="w-full p-2.5 bg-slate-950 border border-slate-700 text-slate-100 rounded-xl">
+        </div>
+
+        <div>
+          <label class="font-semibold block mb-1 text-slate-300">GOOGLE_SCRIPT_URL (Apps Script)</label>
+          <input type="text" id="guru-script-url" placeholder="https://script.google.com/macros/s/.../exec" class="w-full p-2.5 bg-slate-950 border border-slate-700 text-slate-100 rounded-xl font-mono text-[11px]">
+        </div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <input type="checkbox" id="guru-fullscreen" class="rounded bg-slate-950 border-slate-700 text-cyan-600 focus:ring-cyan-500">
+          <label for="guru-fullscreen" class="text-slate-300">Wajibkan Mode Fullscreen saat remedial dimulai</label>
+        </div>
+
+        <div class="pt-3 flex flex-wrap gap-2 justify-between border-t border-slate-800">
+          <button onclick="testGoogleSheetsConnection()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg">Tes Koneksi Sheets</button>
+          <button onclick="resetGuruSettings()" class="px-3 py-2 bg-rose-950/60 hover:bg-rose-900 border border-rose-500/30 text-rose-300 rounded-lg">Reset Default</button>
+          <button onclick="saveGuruSettings()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg">Simpan Pengaturan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIKA APLIKASI WEB -->
+  <script>
+    /* ==========================================================================
+       1. DATABASE SOAL (15 SOAL: 10 PG HOTS/AKM + 5 ESSAY / ISIAN SINGKAT)
+       ========================================================================== */
+    const DATABASE_SOAL = [
+      {
+        id: 1,
+        tipe: "PG",
+        kesulitan: "Mudah",
+        stimulus: "Model atom terus berkembang seiring ditemukannya fakta-fakta eksperimental baru oleh para ilmuwan.",
+        pertanyaan: "Kelemahan utama dari model atom Rutherford yang kemudian disempurnakan oleh Niels Bohr melalui teori lintasan stasioner adalah...",
+        opsi: [
+          "A. Tidak dapat menjelaskan adanya muatan positif di pusat atom",
+          "B. Tidak dapat menjelaskan mengapa elektron tidak jatuh ke inti atom akibat memancarkan energi secara terus-menerus",
+          "C. Menganggap bahwa massa atom terpusat pada partikel bermuatan negatif",
+          "D. Belum memperhitungkan adanya neutron di dalam inti atom"
+        ],
+        kunci: "B",
+        skor: 5
+      },
+      {
+        id: 2,
+        tipe: "PG",
+        kesulitan: "Sedang",
+        stimulus: "Berikut adalah data partikel penyusun untuk dua spesies kimia: <br>• Spesies X: Proton = 11, Neutron = 12, Elektron = 10<br>• Spesies Y: Proton = 17, Neutron = 18, Elektron = 18",
+        pertanyaan: "Berdasarkan data di atas, pernyataan yang paling tepat mengenai spesies X dan Y adalah...",
+        opsi: [
+          "A. X adalah anion bermuatan +1 dan Y adalah kation bermuatan -1",
+          "B. X adalah kation bermuatan +1 dan Y adalah anion bermuatan -1",
+          "C. X dan Y merupakan pasangan isoton karena jumlah neutronnya hampir sama",
+          "D. X dan Y merupakan atom netral dari unsur natrium dan klorin"
+        ],
+        kunci: "B",
+        skor: 5
+      },
+      {
+        id: 3,
+        tipe: "PG",
+        kesulitan: "Sedang",
+        stimulus: "Suatu ion kalsium disimbolkan sebagai berikut: <b><sup>40</sup><sub>20</sub>Ca<sup>2+</sup></b>",
+        pertanyaan: "Jumlah proton, neutron, dan elektron yang dimiliki oleh ion Ca²⁺ tersebut berturut-turut adalah...",
+        opsi: [
+          "A. 20, 20, 18",
+          "B. 20, 20, 22",
+          "C. 20, 40, 18",
+          "D. 18, 20, 20"
+        ],
+        kunci: "A",
+        skor: 5
+      },
+      {
+        id: 4,
+        tipe: "PG",
+        kesulitan: "Sedang",
+        stimulus: "Diberikan empat buah notasi atom unsur sebagai berikut:<br>1) <sup>12</sup><sub>6</sub>C<br>2) <sup>14</sup><sub>6</sub>C<br>3) <sup>14</sup><sub>7</sub>N<br>4) <sup>16</sup><sub>8</sub>O",
+        pertanyaan: "Pasangan notasi atom yang menunjukkan fenomena <b>ISOBAR</b> adalah...",
+        opsi: [
+          "A. (1) dan (2)",
+          "B. (2) dan (3)",
+          "C. (1) dan (3)",
+          "D. (3) dan (4)"
+        ],
+        kunci: "B",
+        skor: 5
+      },
+      {
+        id: 5,
+        tipe: "PG",
+        kesulitan: "Sedang",
+        stimulus: "Terdapat pasangan atom berikut: <b><sup>31</sup><sub>15</sub>P</b> dan <b><sup>32</sup><sub>16</sub>S</b>.",
+        pertanyaan: "Pasangan atom di atas dikategorikan sebagai <b>ISOTON</b> karena...",
+        opsi: [
+          "A. Memiliki nomor atom sama yaitu 15 dan 16",
+          "B. Memiliki nomor massa yang sama",
+          "C. Memiliki jumlah neutron yang sama yaitu 16",
+          "D. Memiliki jumlah elektron valensi yang identik"
+        ],
+        kunci: "C",
+        skor: 5
+      },
+      {
+        id: 6,
+        tipe: "PG",
+        kesulitan: "Sulit",
+        stimulus: "Di alam, tembaga (Cu) memiliki dua isotop stabil yaitu ⁶³Cu (massa relatif = 63) dan ⁶⁵Cu (massa relatif = 65). Jika massa atom relatif (Ar) rata-rata tembaga di alam adalah 63,5.",
+        pertanyaan: "Berapakah persentase kelimpahan isotop ⁶³Cu di alam?",
+        opsi: [
+          "A. 25%",
+          "B. 50%",
+          "C. 75%",
+          "D. 80%"
+        ],
+        kunci: "C",
+        skor: 5
+      },
+      {
+        id: 7,
+        tipe: "PG",
+        kesulitan: "Sedang",
+        stimulus: "Atom Kalium memiliki nomor atom (Z) = 19 dan nomor massa (A) = 39.",
+        pertanyaan: "Konfigurasi elektron atom Kalium berdasarkan kulit utama (K, L, M, N) adalah...",
+        opsi: [
+          "A. 2 , 8 , 9",
+          "B. 2 , 8 , 8 , 1",
+          "C. 2 , 8 , 7 , 2",
+          "D. 2 , 18 , 8 shadow"
+        ],
+        kunci: "B",
+        skor: 5
+      },
+      {
+        id: 8,
+        tipe: "PG",
+        kesulitan: "Sedang",
+        stimulus: "Unsur X memiliki nomor atom 16. Atom ini cenderung membentuk ion paling stabil ketika berikatan dengan unsur lain.",
+        pertanyaan: "Jumlah elektron valensi atom X netral dan rumus ion stabil yang dibentuknya adalah...",
+        opsi: [
+          "A. Elektron valensi = 6; membentuk ion X²⁻",
+          "B. Elektron valensi = 6; membentuk ion X²⁺",
+          "C. Elektron valensi = 4; membentuk ion X⁴⁺",
+          "D. Elektron valensi = 8; tidak membentuk ion"
+        ],
+        kunci: "A",
+        skor: 5
+      },
+      {
+        id: 9,
+        tipe: "PG",
+        kesulitan: "Mudah",
+        stimulus: "Percobaan tabung sinar katoda oleh J.J. Thomson menghasilkan penemuan partikel penyusun atom bermuatan negatif.",
+        pertanyaan: "Partikel subatomik tersebut dikenal dengan nama...",
+        opsi: [
+          "A. Proton",
+          "B. Neutron",
+          "C. Elektron",
+          "D. Positron"
+        ],
+        kunci: "C",
+        skor: 5
+      },
+      {
+        id: 10,
+        tipe: "PG",
+        kesulitan: "Sulit",
+        stimulus: "Suatu ion stabil X³⁻ memiliki konfigurasi elektron 2 , 8 , 8.",
+        pertanyaan: "Nomor atom (Z) dari unsur X netral tersebut adalah...",
+        opsi: [
+          "A. 15",
+          "B. 18",
+          "C. 21",
+          "D. 12"
+        ],
+        kunci: "A",
+        skor: 5
+      },
+      {
+        id: 11,
+        tipe: "Essay",
+        kesulitan: "Sedang",
+        stimulus: "Suatu atom netral X memiliki nomor massa 35 dan memiliki 18 neutron di dalam intinya.",
+        pertanyaan: "Tuliskan konfigurasi elektron kulit (K, L, M) dari atom X tersebut! (Format: 2, 8, 7)",
+        kunciKeywords: ["2, 8, 7", "2,8,7", "2 8 7"],
+        skor: 10
+      },
+      {
+        id: 12,
+        tipe: "Essay",
+        kesulitan: "Sedang",
+        stimulus: "Diketahui nomor atom alumunium (Al) adalah 13.",
+        pertanyaan: "Berapakah jumlah elektron valensi dari atom alumunium (Al) tersebut?",
+        kunciKeywords: ["3"],
+        skor: 10
+      },
+      {
+        id: 13,
+        tipe: "Essay",
+        kesulitan: "Sedang",
+        stimulus: "Model atom yang menggambarkan elektron beredar mengelilingi inti atom pada lintasan/tingkat energi tertentu mirip sistem tata surya dikemukakan oleh ilmuwan bernama...",
+        pertanyaan: "Sebutkan nama ilmuwan penemu teori/model atom tersebut!",
+        kunciKeywords: ["bohr", "niels bohr"],
+        skor: 10
+      },
+      {
+        id: 14,
+        tipe: "Essay",
+        kesulitan: "Sulit",
+        stimulus: "Suatu atom netral M memiliki 12 proton dan 12 neutron.",
+        pertanyaan: "Tentukan jumlah elektron yang dimiliki oleh ion M²⁺ dari unsur tersebut!",
+        kunciKeywords: ["10"],
+        skor: 10
+      },
+      {
+        id: 15,
+        tipe: "Essay",
+        kesulitan: "Sedang",
+        stimulus: "Dua buah atom memiliki nomor atom sama tetapi nomor massanya berbeda (contoh: <sup>12</sup>C dan <sup>14</sup>C).",
+        pertanyaan: "Apakah istilah kimia untuk menggambarkan hubungan kedua atom tersebut?",
+        kunciKeywords: ["isotop"],
+        skor: 10
+      }
+    ];
+
+    /* ==========================================================================
+       2. STATE DAN CONFIG APLIKASI
+       ========================================================================== */
+    let config = {
+      kodeAkses: localStorage.getItem("kimia_kodeAkses") || "KIMIA2026",
+      guruPin: localStorage.getItem("kimia_guruPin") || "GURU2026",
+      durasiMenit: parseInt(localStorage.getItem("kimia_durasiMenit")) || 45,
+      scriptUrl: localStorage.getItem("kimia_scriptUrl") || "https://script.google.com/macros/s/AKfycbyxME73kGyEl1XWwrjiNT0vqgPzUSm_-Gssp50Er8p5WXLNog5LW8umLlhb12Fv2UqKSw/exec",
+      requireFullscreen: localStorage.getItem("kimia_requireFullscreen") === "true"
+    };
+
+    let state = {
+      user: { nama: "", kelas: "", nomor: "" },
+      currentQuestionIndex: 0,
+      answers: {},
+      timerSeconds: config.durasiMenit * 60,
+      timerInterval: null,
+      startTime: null,
+      endTime: null,
+      violations: 0,
+      violationLogs: [],
+      isExamFinished: false,
+      isSubmitted: false
+    };
+
+    /* ==========================================================================
+       3. INISIALISASI
+       ========================================================================== */
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      initAntiCheat();
+      document.getElementById("welcome-duration").textContent = `${config.durasiMenit} Menit`;
+      
+      // Mencegah Form submit jika reload/close
+      window.addEventListener("beforeunload", (e) => {
+        if (state.startTime && !state.isExamFinished) {
+          e.preventDefault();
+          e.returnValue = "Ujian sedang berlangsung. Jika Anda keluar, jawaban akan hilang!";
+        }
+      });
+    });
+
+    // Toggle Tampilan Sandi
+    function togglePasswordVisibility(id) {
+      const el = document.getElementById(id);
+      el.type = el.type === "password" ? "text" : "password";
+    }
+
+    /* ==========================================================================
+       4. LOGIKA START EXAM & VALIDASI KODE AKSES
+       ========================================================================== */
+    function handleStartExam(e) {
+      e.preventDefault();
+      const nama = document.getElementById("input-nama").value.trim();
+      const kelas = document.getElementById("input-kelas").value.trim();
+      const nomor = document.getElementById("input-nomor").value.trim();
+      const kode = document.getElementById("input-kode").value.trim();
+      const errorKode = document.getElementById("error-kode");
+
+      if (kode !== config.kodeAkses) {
+        errorKode.classList.remove("hidden");
+        return;
+      }
+      errorKode.classList.add("hidden");
+
+      state.user = { nama, kelas, nomor };
+      state.startTime = new Date();
+      state.timerSeconds = config.durasiMenit * 60;
+
+      document.getElementById("page-welcome").classList.add("hidden");
+      document.getElementById("page-exam").classList.remove("hidden");
+      document.getElementById("header-exam-info").classList.remove("hidden");
+
+      if (config.requireFullscreen && document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(()=>{});
+      }
+
+      startTimer();
+      renderPetaSoal();
+      loadQuestion(0);
+    }
+
+    /* ==========================================================================
+       5. TIMER COUNTDOWN
+       ========================================================================== */
+    function startTimer() {
+      const timerDisplay = document.getElementById("timer-display");
+      state.timerInterval = setInterval(() => {
+        state.timerSeconds--;
+        
+        const m = Math.floor(state.timerSeconds / 60);
+        const s = state.timerSeconds % 60;
+        timerDisplay.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+
+        if (state.timerSeconds <= 0) {
+          clearInterval(state.timerInterval);
+          alert("Waktu pengerjaan telah habis!");
+          finishExam("SELESAI – WAKTU HABIS");
+        }
+      }, 1000);
+    }
+
+    /* ==========================================================================
+       6. RENDER SOAL & NAVIGASI
+       ========================================================================== */
+    function renderPetaSoal() {
+      const container = document.getElementById("peta-soal-container");
+      container.innerHTML = "";
+
+      DATABASE_SOAL.forEach((soal, idx) => {
+        const btn = document.createElement("button");
+        btn.id = `peta-btn-${idx}`;
+        btn.onclick = () => loadQuestion(idx);
+        
+        const isAnswered = !!state.answers[soal.id];
+        const isActive = idx === state.currentQuestionIndex;
+
+        btn.className = `w-7 h-7 md:w-8 md:h-8 rounded-lg text-xs font-bold transition flex items-center justify-center border ${
+          isActive 
+            ? "border-cyan-400 bg-cyan-600 text-white shadow-lg shadow-cyan-950" 
+            : isAnswered 
+              ? "bg-emerald-950 border-emerald-500/50 text-emerald-300" 
+              : "bg-slate-900 border-slate-700 text-slate-400 hover:bg-slate-800"
+        }`;
+        btn.textContent = idx + 1;
+        container.appendChild(btn);
+      });
+    }
+
+    function loadQuestion(index) {
+      state.currentQuestionIndex = index;
+      const soal = DATABASE_SOAL[index];
+
+      document.getElementById("soal-badge-tipe").textContent = soal.tipe === "PG" ? "Pilihan Ganda" : "Isian Singkat / Essay";
+      document.getElementById("soal-badge-kesulitan").textContent = `Tingkat: ${soal.kesulitan}`;
+      
+      const stimulusEl = document.getElementById("soal-stimulus");
+      if (soal.stimulus) {
+        stimulusEl.classList.remove("hidden");
+        stimulusEl.innerHTML = soal.stimulus;
+      } else {
+        stimulusEl.classList.add("hidden");
+      }
+
+      document.getElementById("soal-teks").textContent = `${index + 1}. ${soal.pertanyaan}`;
+      document.getElementById("progress-text").textContent = `Soal ${index + 1} dari ${DATABASE_SOAL.length}`;
+      document.getElementById("progress-bar").style.width = `${((index + 1) / DATABASE_SOAL.length) * 100}%`;
+
+      const areaPG = document.getElementById("area-pg");
+      const areaEssay = document.getElementById("area-essay");
+
+      if (soal.tipe === "PG") {
+        areaPG.classList.remove("hidden");
+        areaEssay.classList.add("hidden");
+        areaPG.innerHTML = "";
+
+        soal.opsi.forEach(opsi => {
+          const letter = opsi.charAt(0);
+          const isSelected = state.answers[soal.id] === letter;
+
+          const label = document.createElement("label");
+          label.className = `flex items-center p-3.5 rounded-xl border cursor-pointer transition ${
+            isSelected 
+              ? "border-cyan-500 bg-cyan-950/60 font-semibold text-cyan-200" 
+              : "border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 text-slate-300"
+          }`;
+          label.innerHTML = `
+            <input type="radio" name="opsi-soal" value="${letter}" ${isSelected ? "checked" : ""} onchange="saveAnswerPG('${soal.id}', '${letter}')" class="w-4 h-4 text-cyan-500 focus:ring-cyan-500 bg-slate-950 border-slate-700">
+            <span class="ml-3 text-xs md:text-sm">${opsi}</span>
+          `;
+          areaPG.appendChild(label);
+        });
+      } else {
+        areaPG.classList.add("hidden");
+        areaEssay.classList.remove("hidden");
+        document.getElementById("input-essay").value = state.answers[soal.id] || "";
+      }
+
+      document.getElementById("btn-prev").style.visibility = index === 0 ? "hidden" : "visible";
+      if (index === DATABASE_SOAL.length - 1) {
+        document.getElementById("btn-next").classList.add("hidden");
+        document.getElementById("btn-finish").classList.remove("hidden");
+      } else {
+        document.getElementById("btn-next").classList.remove("hidden");
+        document.getElementById("btn-finish").classList.add("hidden");
+      }
+
+      renderPetaSoal();
+    }
+
+    function navSoal(dir) {
+      const newIdx = state.currentQuestionIndex + dir;
+      if (newIdx >= 0 && newIdx < DATABASE_SOAL.length) {
+        loadQuestion(newIdx);
+      }
+    }
+
+    function saveAnswerPG(soalId, value) {
+      state.answers[soalId] = value;
+      renderPetaSoal();
+    }
+
+    function saveAnswerEssay() {
+      const soalId = DATABASE_SOAL[state.currentQuestionIndex].id;
+      const val = document.getElementById("input-essay").value;
+      state.answers[soalId] = val;
+      renderPetaSoal();
+    }
+
+    /* ==========================================================================
+       7. SISTEM ANTI-CURANG (DETEKSI VISIBILITY, BLUR, SCREEN SHARING)
+       ========================================================================== */
+    function initAntiCheat() {
+      // Deteksi Pindah Tab / Visibility
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden && !state.isExamFinished && state.startTime) {
+          handleViolation("Berpindah Tab / Visibility Hidden");
+        }
+      });
+
+      // Deteksi Kehilangan Fokus Window
+      window.addEventListener("blur", () => {
+        if (!state.isExamFinished && state.startTime) {
+          handleViolation("Window Kehilangan Fokus (Blur)");
+        }
+      });
+
+      // Deteksi Fullscreen Exit
+      document.addEventListener("fullscreenchange", () => {
+        if (config.requireFullscreen && !document.fullscreenElement && !state.isExamFinished && state.startTime) {
+          handleViolation("Keluar dari Mode Fullscreen");
+        }
+      });
+    }
+
+    function handleViolation(reason) {
+      if (state.isExamFinished) return;
+
+      state.violations++;
+      const timeStr = new Date().toLocaleTimeString();
+      state.violationLogs.push(`[${timeStr}] ${reason}`);
+
+      if (state.violations === 1) {
+        document.getElementById("modal-warning").classList.remove("hidden");
+      } else if (state.violations >= 2) {
+        alert("PERINGATAN KERAS: Terdeteksi pelanggaran ke-2. Remedial dihentikan secara otomatis!");
+        finishExam("DIBATALKAN – PELANGGARAN ANTI-CURANG");
+      }
+    }
+
+    function closeWarningModal() {
+      document.getElementById("modal-warning").classList.add("hidden");
+      if (config.requireFullscreen && document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(()=>{});
+      }
+    }
+
+    /* ==========================================================================
+       8. SUBMIT EXAM & HITUNG SKOR
+       ========================================================================== */
+    function confirmSubmitExam() {
+      const unanswered = DATABASE_SOAL.filter(s => !state.answers[s.id]).length;
+      let msg = "Apakah Anda yakin ingin mengirim semua jawaban remedial ini?";
+      if (unanswered > 0) {
+        msg = `Masih ada ${unanswered} soal yang belum dijawab. ` + msg;
+      }
+
+      if (confirm(msg)) {
+        finishExam("SELESAI");
+      }
+    }
+
+    function finishExam(status = "SELESAI") {
+      if (state.isExamFinished) return;
+      state.isExamFinished = true;
+      state.endTime = new Date();
+      clearInterval(state.timerInterval);
+
+      let scorePG = 0;
+      let scoreEssay = 0;
+      let correctPG = 0;
+      let wrongPG = 0;
+      let unansweredCount = 0;
+
+      DATABASE_SOAL.forEach(soal => {
+        const ans = state.answers[soal.id];
+        if (!ans) {
+          unansweredCount++;
+          return;
+        }
+
+        if (soal.tipe === "PG") {
+          if (ans === soal.kunci) {
+            scorePG += soal.skor;
+            correctPG++;
+          } else {
+            wrongPG++;
+          }
+        } else if (soal.tipe === "Essay") {
+          const cleanAns = ans.toString().toLowerCase().trim();
+          const match = soal.kunciKeywords.some(kw => cleanAns.includes(kw));
+          if (match) {
+            scoreEssay += soal.skor;
+          }
+        }
+      });
+
+      const totalScore = scorePG + scoreEssay;
+      const durationSeconds = Math.round((state.endTime - state.startTime) / 1000);
+      const durMin = Math.floor(durationSeconds / 60);
+      const durSec = durationSeconds % 60;
+      const durationStr = `${durMin}m ${durSec}s`;
+
+      document.getElementById("page-exam").classList.add("hidden");
+      document.getElementById("page-result").classList.remove("hidden");
+      document.getElementById("header-exam-info").classList.add("hidden");
+
+      document.getElementById("res-nama").textContent = state.user.nama;
+      document.getElementById("res-kelas").textContent = state.user.kelas;
+      document.getElementById("res-nomor").textContent = state.user.nomor;
+      document.getElementById("res-score").textContent = totalScore;
+      document.getElementById("res-pg-score").textContent = `${scorePG} / 50`;
+      document.getElementById("res-essay-score").textContent = `${scoreEssay} / 50`;
+      document.getElementById("res-correct").textContent = correctPG;
+      document.getElementById("res-duration").textContent = durationStr;
+
+      const statusEl = document.getElementById("res-status");
+      if (status === "DIBATALKAN – PELANGGARAN ANTI-CURANG") {
+        document.getElementById("result-title").textContent = "REMIDIAL DIHENTIKAN";
+        document.getElementById("result-subtitle").textContent = "Ujian Anda dihentikan karena melanggar aturan anti-kecurangan.";
+        statusEl.textContent = status;
+        statusEl.className = "font-bold text-rose-400";
+        document.getElementById("status-icon-container").className = "w-16 h-16 bg-rose-950 border border-rose-500/40 text-rose-400 rounded-full flex items-center justify-center mx-auto";
+        document.getElementById("status-icon-container").innerHTML = `<i data-lucide="shield-alert" class="w-10 h-10"></i>`;
+      } else {
+        statusEl.textContent = "SELESAI";
+      }
+
+      document.getElementById("res-pelanggaran").textContent = state.violations > 0 
+        ? `${state.violations} Pelanggaran (${state.violationLogs.join("; ")})` 
+        : "Tidak Ada Pelanggaran";
+
+      lucide.createIcons();
+
+      // Buat Payload untuk Google Sheets
+      const payload = {
+        timestamp: new Date().toISOString(),
+        nama: state.user.nama,
+        kelas: state.user.kelas,
+        nomorPeserta: state.user.nomor,
+        nilaiPG: scorePG,
+        nilaiEssay: scoreEssay,
+        nilaiAkhir: totalScore,
+        jumlahBenarPG: correctPG,
+        jumlahSalahPG: wrongPG,
+        jumlahTidakDijawab: unansweredCount,
+        waktuMulai: state.startTime.toLocaleTimeString(),
+        waktuSelesai: state.endTime.toLocaleTimeString(),
+        durasi: durationStr,
+        statusUjian: status,
+        jumlahPelanggaran: state.violations,
+        jenisPelanggaran: state.violationLogs.join(" | ")
+      };
+
+      // Tambahkan Jawaban Soal 1 s/d 15 ke payload
+      DATABASE_SOAL.forEach(s => {
+        payload[`soal_${s.id}`] = state.answers[s.id] || "-";
+      });
+
+      sendToGoogleSheets(payload);
+    }
+
+    /* ==========================================================================
+       9. PENGIRIMAN DATA KE GOOGLE APPS SCRIPT
+       ========================================================================== */
+    function sendToGoogleSheets(payload) {
+      const statusText = document.getElementById("spreadsheet-status");
+      if (!config.scriptUrl) {
+        statusText.textContent = "URL Google Apps Script belum diatur oleh guru. Hasil disimpan lokal.";
+        statusText.className = "text-amber-400 text-xs italic mt-2";
+        return;
+      }
+
+      statusText.textContent = "Mengirim data hasil ke Google Sheets...";
+      statusText.className = "text-cyan-400 text-xs italic mt-2 animate-pulse";
+
+      fetch(config.scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        state.isSubmitted = true;
+        statusText.textContent = "✓ Hasil berhasil terkirim dan tersimpan di Google Sheets.";
+        statusText.className = "text-emerald-400 font-semibold text-xs mt-2";
+      })
+      .catch(() => {
+        statusText.textContent = "Hasil belum berhasil dikirim ke server. Jangan menutup halaman ini dan coba kirim kembali.";
+        statusText.className = "text-rose-400 font-semibold text-xs mt-2";
+      });
+    }
+
+    /* ==========================================================================
+       10. PANEL GURU TERSEMBUNYI (KLIK LOGO 5X)
+       ==========================================================================
+       PENTING UNTUK PENGEMBANG:
+       Autentikasi PIN Guru di bawah ini sepenuhnya diproses di sisi klien (browser/HTML/JS).
+       Sandi yang disimpan di localStorage atau variabel JS dapat dibaca jika seseorang 
+       memeriksa Source Code/Inspect Element browser. Untuk sistem keamanan yang benar-benar 
+       aman secara profesional, autentikasi harus dipindahkan ke server/backend.
+       ========================================================================== */
+    let secretClickCount = 0;
+    let secretClickTimer = null;
+
+    function handleSecretClick() {
+      secretClickCount++;
+      clearTimeout(secretClickTimer);
+      secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 1500);
+
+      if (secretClickCount >= 5) {
+        secretClickCount = 0;
+        openGuruModal();
+      }
+    }
+
+    function openGuruModal() {
+      document.getElementById("modal-guru").classList.remove("hidden");
+    }
+
+    function closeGuruModal() {
+      document.getElementById("modal-guru").classList.add("hidden");
+      document.getElementById("guru-auth").classList.remove("hidden");
+      document.getElementById("guru-content").classList.add("hidden");
+      document.getElementById("guru-pin-input").value = "";
+      document.getElementById("guru-auth-err").classList.add("hidden");
+    }
+
+    function authGuru() {
+      const pin = document.getElementById("guru-pin-input").value;
+      if (pin === config.guruPin) {
+        document.getElementById("guru-auth").classList.add("hidden");
+        document.getElementById("guru-content").classList.remove("hidden");
+
+        // Load nilai ke form
+        document.getElementById("guru-kode-akses").value = config.kodeAkses;
+        document.getElementById("guru-durasi").value = config.durasiMenit;
+        document.getElementById("guru-script-url").value = config.scriptUrl;
+        document.getElementById("guru-fullscreen").checked = config.requireFullscreen;
+      } else {
+        document.getElementById("guru-auth-err").classList.remove("hidden");
+      }
+    }
+
+    function saveGuruSettings() {
+      const kode = document.getElementById("guru-kode-akses").value.trim();
+      const pinBaru = document.getElementById("guru-pin-baru").value.trim();
+      const durasi = parseInt(document.getElementById("guru-durasi").value);
+      const url = document.getElementById("guru-script-url").value.trim();
+      const reqFs = document.getElementById("guru-fullscreen").checked;
+
+      if (kode) config.kodeAkses = kode;
+      if (pinBaru) config.guruPin = pinBaru;
+      if (durasi) config.durasiMenit = durasi;
+      config.scriptUrl = url;
+      config.requireFullscreen = reqFs;
+
+      localStorage.setItem("kimia_kodeAkses", config.kodeAkses);
+      localStorage.setItem("kimia_guruPin", config.guruPin);
+      localStorage.setItem("kimia_durasiMenit", config.durasiMenit);
+      localStorage.setItem("kimia_scriptUrl", config.scriptUrl);
+      localStorage.setItem("kimia_requireFullscreen", config.requireFullscreen);
+
+      document.getElementById("welcome-duration").textContent = `${config.durasiMenit} Menit`;
+      alert("Pengaturan guru berhasil disimpan!");
+      closeGuruModal();
+    }
+
+    function resetGuruSettings() {
+      if (confirm("Reset semua pengaturan guru ke kondisi awal?")) {
+        localStorage.removeItem("kimia_kodeAkses");
+        localStorage.removeItem("kimia_guruPin");
+        localStorage.removeItem("kimia_durasiMenit");
+        localStorage.removeItem("kimia_scriptUrl");
+        localStorage.removeItem("kimia_requireFullscreen");
+        location.reload();
+      }
+    }
+
+    function testGoogleSheetsConnection() {
+      const url = document.getElementById("guru-script-url").value.trim();
+      if (!url) {
+        alert("Silakan masukkan URL Google Apps Script terlebih dahulu.");
+        return;
+      }
+
+      alert("Menguji koneksi ke Google Apps Script...");
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ test: "PING_GURU" })
+      })
+      .then(() => alert("Koneksi berhasil terkirim ke Google Apps Script!"))
+      .catch(() => alert("Gagal terhubung ke Google Apps Script. Periksa kembali URL Anda."));
+    }
+  </script>
+</body>
+</html>
